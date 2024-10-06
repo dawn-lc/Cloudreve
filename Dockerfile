@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+RUN apk add --no-cache vips ffmpeg libreoffice
+
 WORKDIR /cloudreve
 COPY cloudreve ./cloudreve
 
