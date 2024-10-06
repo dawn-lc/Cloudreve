@@ -5,7 +5,7 @@ RUN apk update
 RUN apk add --no-cache vips ffmpeg libreoffice
 
 WORKDIR /cloudreve
-COPY cloudreve ./cloudreve
+COPY dist/Cloudreve_linux_amd64_v1/cloudreve ./cloudreve
 
 RUN apk update \
     && apk add --no-cache tzdata \
