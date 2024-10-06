@@ -1,21 +1,5 @@
-FROM alpine:latest
+FROM cloudreve/cloudreve:latest
 
-RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
-RUN apk update
-RUN apk add --no-cache vips ffmpeg libreoffice
-
-WORKDIR /cloudreve
-COPY dist/Cloudreve_linux_amd64_v1/cloudreve ./cloudreve
-
-RUN apk update \
-    && apk add --no-cache tzdata \
-    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo "Asia/Shanghai" > /etc/timezone \
-    && chmod +x ./cloudreve \
-    && mkdir -p /data/aria2 \
-    && chmod -R 766 /data/aria2
-
-EXPOSE 5212
-VOLUME ["/cloudreve/uploads", "/cloudreve/avatar", "/data"]
-
-ENTRYPOINT ["./cloudreve"]
+RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories && \
+    apk update && \
+    apk add icu-data-full vips ffmpeg libreoffice
