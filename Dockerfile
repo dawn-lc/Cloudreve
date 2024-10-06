@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
+RUN apk update
 RUN apk add --no-cache vips ffmpeg libreoffice
 
 WORKDIR /cloudreve
